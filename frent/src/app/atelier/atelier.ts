@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-atelier',
-  imports: [],
+  standalone: true, 
   templateUrl: './atelier.html',
-  styleUrl: './atelier.css'
+  styleUrls: ['./atelier.css'] 
 })
-export class Atelier {
-
-}
+export class Atelier {}
