@@ -1,34 +1,34 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // bach *ngFor w *ngIf ykhdmo
 import { AtelierService } from '../service/atelierService';
-import { NgFor } from '@angular/common';
+import { AtelierModel } from '../model/atelierModel.model';
+
 @Component({
   selector: 'app-atelier',
   standalone: true,
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './atelier.html',
   styleUrls: ['./atelier.css'],
 })
-export class Atelier {
+export class AtelierComponent {
+  ateliers: AtelierModel[] = [];
 
-ateliers: any[] = [];
-
-constructor (private atelierService: AtelierService){}
+  constructor(private atelierService: AtelierService){}
 
   ngOnInit() {
+    this.getAllAtelier()
+  }
+
+  getAllAtelier(){
     this.atelierService.getAllAtelier().subscribe({
-      next: (res) => {
-        console.log(res); 
-        this.ateliers = res;
+      next: (data) => {
+        this.ateliers = data;
+        console.log(data);
       },
-      error: (err) => console.error(err)
+      error: (err) => {
+        console.error(err);
+      }
     });
   }
   
- getAllAtelier() {
-    this.atelierService.getAllAtelier().subscribe((res: any) => {
-      this.ateliers = res;
-    });
-
-
-}
 }

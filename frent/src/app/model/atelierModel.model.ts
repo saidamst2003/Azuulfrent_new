@@ -1,4 +1,4 @@
-export interface Atelier {
+export interface AtelierModel  {
     id: number;
     nom: string;
     description: string;

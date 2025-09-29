@@ -1,20 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AtelierModel  } from '../model/atelierModel.model';
 
-const BASIC_URL = 'http://localhost:8081/api/ateliers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AtelierService {
+  private BASIC_URL = 'http://localhost:8081/api/ateliers';
+
   constructor(private http: HttpClient) {}
 
-  postAtelier(atelier: any): Observable<any> {
-    return this.http.post(BASIC_URL, atelier);
+  getAllAtelier(): Observable<AtelierModel []> {
+    return this.http.get<AtelierModel []>(this.BASIC_URL);
   }
 
-  getAllAtelier(): Observable<any> {
-    return this.http.get(BASIC_URL);
+  postAtelier(atelier: AtelierModel ): Observable<AtelierModel > {
+    return this.http.post<AtelierModel >(this.BASIC_URL, atelier);
   }
+
 }
