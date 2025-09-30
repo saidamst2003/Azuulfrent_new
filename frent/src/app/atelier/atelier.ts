@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // bach *ngFor w *ngIf ykhdmo
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AtelierService } from '../service/atelierService';
 import { AtelierModel } from '../model/atelierModel.model';
 
@@ -8,27 +8,26 @@ import { AtelierModel } from '../model/atelierModel.model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './atelier.html',
-  styleUrls: ['./atelier.css'],
+  styleUrl: './atelier.css',
 })
-export class AtelierComponent {
+export class AtelierComponent implements OnInit {
   ateliers: AtelierModel[] = [];
 
-  constructor(private atelierService: AtelierService){}
+  constructor(private atelierService: AtelierService) {}
 
-  ngOnInit() {
-    this.getAllAtelier()
+  ngOnInit(): void {
+    this.getAllAtelier();
   }
 
-  getAllAtelier(){
+  getAllAtelier(): void {
     this.atelierService.getAllAtelier().subscribe({
       next: (data) => {
         this.ateliers = data;
-        console.log(data);
+        console.log('Ateliers récupérés:', this.ateliers);
       },
       error: (err) => {
-        console.error(err);
+        console.error('Erreur lors de la récupération des ateliers:', err);
       }
     });
   }
-  
 }

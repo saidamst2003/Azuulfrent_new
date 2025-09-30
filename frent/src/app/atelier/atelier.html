@@ -1,31 +1,31 @@
 <section class="hero-section">
   <div class="hero-content">
-    <h1>Nos Ateliers Créatifs</h1>
-    <h1>Mon Ateliers Créatifs</h1>
-    <p>Découvrez nos ateliers uniques où créativité et bien-être se rencontrent pour des moments inoubliables</p>
+    <h1>Mon Atelier Créatif</h1>
+    <p>Découvrez nos ateliers uniques...</p>
   </div>
 </section>
 
-<button class="btn-new">Publier new atelier</button>
+<div style="text-align: center;">
+  <button class="btn-new">Publier new atelier</button>
+</div>
+
 <table>
   <thead>
-     <tr>
-      <th>nom</th>
-      <th>description</th>
-      <th>date</th>
-      <th>heure</th>
-      <th>categorie</th>    
-     </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let atelier of ateliers ">
-          <td>{{atelier.nom}}</td>
-          <td>{{atelier.description}}</td>
-          <td>{{atelier.date}}</td>
-          <td>{{atelier.heure}}</td>
-          <td>{{atelier.categorie}}</td>
-        </tr>
-   </tbody>
-  
-
+    <tr>
+      <th>Nom</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Heure</th>
+      <th>Catégorie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let atelier of ateliers">
+      <td>{{ atelier.nom }}</td>
+      <td>{{ atelier.description }}</td>
+      <td>{{ atelier.date }}</td>
+      <td>{{ atelier.heure }}</td>
+      <td>{{ atelier.categorie }}</td>
+    </tr>
+  </tbody>
 </table>

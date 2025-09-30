@@ -8,7 +8,6 @@ import { provideZonelessChangeDetection } from '@angular/core';
 bootstrapApplication(App, {
   providers: [provideRouter(routes),
     provideHttpClient(withFetch()), 
-    provideZonelessChangeDetection()
-    
+    provideZonelessChangeDetection()    
   ]
 });
