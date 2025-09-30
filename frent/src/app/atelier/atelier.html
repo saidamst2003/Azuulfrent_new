@@ -11,25 +11,24 @@
 
 
 <!-- afficher ateliers -->
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Heure</th>
-      <th>Catégorie</th>
-    </tr>
-  </thead>
+ <div class="ateliers-container-elegant">
+  <div class="card-elegant" *ngFor="let atelier of ateliers">
+    
+    <div class="card-image-placeholder">
+        <img src="chemin_vers_image_par_defaut_ou_atelier.image" alt="Image de l'atelier">
+    </div>
 
-  <tbody >
-    <tr *ngFor="let atelier of ateliers">
-      <td>{{ atelier.nom }}</td>
-      <td>{{ atelier.description }}</td>
-      <td>{{ atelier.date }}</td>
-      <td>{{ atelier.heure }}</td>
-      <td>{{ atelier.categorie }}</td>
-    </tr>
-  </tbody>
-</table>
+    <div class="card-content">
+        <span class="card-category-elegant">{{ atelier.categorie }}</span>
+        
+        <h3 class="card-title-elegant">{{ atelier.nom }}</h3>
 
+        <p class="card-description-elegant">{{ atelier.description }}</p>
+        
+        <div class="card-footer-elegant">
+            <span class="detail-date">{{ atelier.date }}</span>
+            <span class="detail-time">{{ atelier.heure }}</span>
+        </div>
+    </div>
+  </div>
+</div>

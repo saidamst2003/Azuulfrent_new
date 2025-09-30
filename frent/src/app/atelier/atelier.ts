@@ -8,7 +8,7 @@ import { AtelierModel } from '../model/atelierModel.model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './atelier.html',
-  styleUrls: ['./atelier.css'], // corrected
+  styleUrls: ['./atelier.css'],
 })
 export class AtelierComponent implements OnInit {
   ateliers: AtelierModel[] = [];
@@ -25,10 +25,13 @@ export class AtelierComponent implements OnInit {
 
   getAllAtelier(): void {
     this.atelierService.getAllAtelier().subscribe({
+
       next: (data) => {
+        
         this.ateliers = data;
         this.loading = false;
-        this.cd.detectChanges(); // force Angular to update template
+        this.cd.detectChanges(); 
+  
         console.log('Ateliers récupérés:', this.ateliers);
       },
       error: (err) => {
