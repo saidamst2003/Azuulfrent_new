@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AtelierService } from '../service/atelierService';
 import { AtelierModel } from '../model/atelierModel.model';
@@ -8,12 +8,16 @@ import { AtelierModel } from '../model/atelierModel.model';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './atelier.html',
-  styleUrl: './atelier.css',
+  styleUrls: ['./atelier.css'], // corrected
 })
 export class AtelierComponent implements OnInit {
   ateliers: AtelierModel[] = [];
+  loading: boolean = true;
 
-  constructor(private atelierService: AtelierService) {}
+  constructor(
+    private atelierService: AtelierService,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getAllAtelier();
@@ -23,10 +27,13 @@ export class AtelierComponent implements OnInit {
     this.atelierService.getAllAtelier().subscribe({
       next: (data) => {
         this.ateliers = data;
+        this.loading = false;
+        this.cd.detectChanges(); // force Angular to update template
         console.log('Ateliers récupérés:', this.ateliers);
       },
       error: (err) => {
         console.error('Erreur lors de la récupération des ateliers:', err);
+        this.loading = false;
       }
     });
   }

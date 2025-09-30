@@ -9,6 +9,8 @@
   <button class="btn-new">Publier new atelier</button>
 </div>
 
+
+<!-- afficher ateliers -->
 <table>
   <thead>
     <tr>
@@ -19,7 +21,8 @@
       <th>Catégorie</th>
     </tr>
   </thead>
-  <tbody>
+
+  <tbody >
     <tr *ngFor="let atelier of ateliers">
       <td>{{ atelier.nom }}</td>
       <td>{{ atelier.description }}</td>
@@ -29,3 +32,4 @@
     </tr>
   </tbody>
 </table>
+
