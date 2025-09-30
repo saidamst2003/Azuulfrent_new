@@ -8,7 +8,16 @@
 <div style="text-align: center;">
   <button class="btn-new">Publier new atelier</button>
 </div>
-<!-- afficher ateliers --> 
+  <form>
+    <input type="text" placeholder="Nom" />
+    <input type="text" placeholder="Description" />
+    <input type="date" placeholder="Date" />
+    <input type="time" placeholder="Heure" />
+    <input type="text" placeholder="Catégorie" />
+    <button type="submit">Envoyer</button>
+  </form>
+
+
 
 <!-- afficher ateliers -->
  <div class="ateliers-container-elegant">
@@ -17,7 +26,7 @@
     <div class="card-image-placeholder">
         <img src="" alt="Image de l'atelier">
     </div>
-
+    
     <div class="card-content">
         <span class="card-category-elegant">{{ atelier.categorie }}</span>
         <h3 class="card-title-elegant">{{ atelier.nom }}</h3>
@@ -28,5 +37,4 @@
         </div>
     </div>
   </div>
-
 </div>
