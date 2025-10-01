@@ -5,4 +5,5 @@ export interface AtelierModel  {
     date: string;
     heure: string;
     categorie: string;
+    image?: string;
 }
