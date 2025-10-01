@@ -1,3 +1,4 @@
+
 <section class="hero-section">
   <div class="hero-content">
     <h1>Mon Atelier Créatif</h1>
@@ -5,26 +6,49 @@
   </div>
 </section>
 
+
+<!-- creer un atelier -->
 <div style="text-align: center;">
-  <button class="btn-new">Publier new atelier</button>
+  <button class="btn-new" (click)="showForm =!showForm">Publier nouvel atelier</button>
 </div>
-  <form>
-    <input type="text" placeholder="Nom" />
-    <input type="text" placeholder="Description" />
-    <input type="date" placeholder="Date" />
-    <input type="time" placeholder="Heure" />
-    <input type="text" placeholder="Catégorie" />
-    <button type="submit">Envoyer</button>
-  </form>
 
+<div *ngIf="showForm" class="form-container">
 
+  <form [formGroup]="postAtelierForm" (ngSubmit)="postAtelier()">
 
-<!-- afficher ateliers -->
+    <div class="form-group">
+      <label for="nom">Nom de l'atelier:</label>
+      <input id="nom" required formControlName="nom" >
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" required formControlName="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="categorie">Catégorie:</label>
+      <input id="categorie" name="categorie" required formControlName="categorie">
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input id="date" name="date" type="date" required formControlName="date">
+    </div>
+    <div class="form-group">
+      <label for="heure">Heure:</label>
+      <input id="heure" name="heure" type="time" required formControlName="heure">
+    </div>
+    <button type="submit">Publier Atelier</button>
+ 
+</form>
+</div>
+
+  
+  <!-- afficher ateliers -->
  <div class="ateliers-container-elegant">
   <div class="card-elegant" *ngFor="let atelier of ateliers">
     
     <div class="card-image-placeholder">
-        <img src="" alt="Image de l'atelier">
+<img [src]="atelier.image || 'assets/images/default-image.jpg'" alt="Atelier" class="w-full h-48 object-cover rounded">
     </div>
     
     <div class="card-content">
