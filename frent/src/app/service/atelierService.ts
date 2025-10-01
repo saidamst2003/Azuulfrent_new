@@ -19,5 +19,8 @@ export class AtelierService {
   postAtelier(atelier: AtelierModel ): Observable<AtelierModel > {
     return this.http.post<AtelierModel >(this.BASIC_URL, atelier);
   }
+   getAtelierById(id: number): Observable<AtelierModel> {
+    return this.http.get<AtelierModel>(`${this.BASIC_URL}/${id}`);
+  }
 
 }
