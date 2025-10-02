@@ -25,5 +25,8 @@ export class AtelierService {
   return this.http.put<AtelierModel>(`${this.BASIC_URL}/${id}`, atelier);
 }
 
+deleteAtelier(id: number): Observable<any> {
+  return this.http.delete(`${this.BASIC_URL}/${id}`);}
+  
 
 }
