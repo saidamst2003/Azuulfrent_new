@@ -21,7 +21,7 @@ export class AtelierComponent implements OnInit {
 
   showForm: boolean = false;
 
-  id: number | null ;
+  id: number | null = null;
 
   constructor( 
     private atelierService: AtelierService, 
