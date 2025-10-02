@@ -130,10 +130,11 @@ form button[type="button"] {
     cursor: pointer;
     display: inline-block;
     width: calc(20% );
-    margin: 20px;
     vertical-align: top;
     box-sizing: border-box;
+    margin-top: 20px;
     margin-left: 66px;
+    margin-bottom: 20px;
 }
 
 .card-elegant:hover {
@@ -141,18 +142,7 @@ form button[type="button"] {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Bouton d'édition */
-.card-elegant button {
-    z-index: 10;
-    transition: all 0.2s ease;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-}
 
-.card-elegant button:hover {
-    transform: scale(1.1);
-}
 
 .card-image-placeholder img {
     width: 100%;
@@ -231,16 +221,9 @@ form button[type="button"] {
 /* Responsive */
 @media (max-width: 768px) {
     .card-elegant {
-        width: calc(100% - 20px);
+        width: calc(70% - 20px);
     }
     
-    .card-image-placeholder img {
-        height: 180px;
-    }
+    
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-    .card-elegant {
-        width: calc(50% - 20px);
-    }
-}
