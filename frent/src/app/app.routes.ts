@@ -4,7 +4,8 @@ import { AtelierComponent } from './atelier/atelier';
 
 export const routes: Routes = [
   { path: '', component: Home },
-  { path: 'atelier', component: AtelierComponent } 
+  { path: 'atelier', component: AtelierComponent } ,
+
 ];
 
 

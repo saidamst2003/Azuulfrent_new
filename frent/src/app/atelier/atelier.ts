@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AtelierService } from '../service/atelierService';
 import { AtelierModel } from '../model/atelierModel.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-atelier',
   standalone: true,
@@ -20,7 +21,16 @@ export class AtelierComponent implements OnInit {
 
   showForm: boolean = false;
 
-  constructor( private atelierService: AtelierService, private cd: ChangeDetectorRef , private fb :FormBuilder) {}
+  id: number | null = null;
+
+  constructor( 
+    private atelierService: AtelierService, 
+    private cd: ChangeDetectorRef , 
+    private fb :FormBuilder,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.id = this.activatedRoute.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
     this.getAllAtelier();
@@ -32,6 +42,7 @@ export class AtelierComponent implements OnInit {
       heure: [null, Validators.required],
       categorie: [null, Validators.required]
     });
+
   }
 
 
@@ -75,6 +86,34 @@ export class AtelierComponent implements OnInit {
     });
   }
 
-
-
+  onUpdateAtelier(atelier: AtelierModel) {
+  this.postAtelierForm.patchValue(atelier);
+  this.id = atelier.id;
+  this.showForm = true;
 }
+
+updateAtelier() {
+  if (this.postAtelierForm.valid && this.id) {
+    this.atelierService.updateAtelier(this.id, this.postAtelierForm.value).subscribe({
+      next: (res) => {
+        console.log("atelier mis à jour :", res);
+
+        const index = this.ateliers.findIndex(a => a.id === this.id);
+        if (index !== -1) {
+          this.ateliers[index] = res;
+        }
+
+        this.showForm = false;
+        this.postAtelierForm.reset();
+        this.id = null;
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour', err);
+      }
+    });
+  } else {
+    console.log('Formulaire invalide ou ID manquant');
+  }
+}
+
+   }
