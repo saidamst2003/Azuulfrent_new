@@ -86,6 +86,11 @@ export class AtelierComponent implements OnInit {
     });
   }
 
+  onUpdateAtelier(atelier: AtelierModel) {
+  this.postAtelierForm.patchValue(atelier);
+  this.id = atelier.id;
+  this.showForm = true;
+}
 
 updateAtelier() {
   if (this.postAtelierForm.valid && this.id) {
