@@ -1,35 +1,48 @@
-<div>
-  <div
-    class="  bg-[#111111] dark:bg-white  overflow-hidden">
+<div class="bg-[#111111] dark:bg-white overflow-hidden">
   
-    <nav class="bg-[#111111] dark:bg-black shadow-lg w-full z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
+  <nav class="bg-[#111111] dark:bg-black shadow-lg w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14 sm:h-16">
 
-<div class="flex-shrink-0 mr-215.5">
-  <a href="#" class="lg:text-xl md:text-lg text-sm font-bold text-gray-700 dark:text-white capitalize">
-    <span class="px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_1.9s_linear_infinite]">A</span>
-    <span class="px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2s_linear_infinite]">Z</span>
-    <span class="px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.1s_linear_infinite]">U</span>
-    <span class="px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.21s_linear_infinite]">U</span>
-    <span class="px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.3s_linear_infinite]">L</span>
-  </a>
-</div>
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#" class="text-xs sm:text-sm md:text-base lg:text-xl font-bold text-gray-700 dark:text-white capitalize inline-flex items-center gap-0.5 sm:gap-1">
+            <span class="px-0.5 sm:px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_1.9s_linear_infinite]">A</span>
+            <span class="px-0.5 sm:px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2s_linear_infinite]">Z</span>
+            <span class="px-0.5 sm:px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.1s_linear_infinite]">U</span>
+            <span class="px-0.5 sm:px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.21s_linear_infinite]">U</span>
+            <span class="px-0.5 sm:px-1 bg-green-400 dark:bg-green-600 rounded-full animate-[ping_2.3s_linear_infinite]">L</span>
+          </a>
+        </div>
 
+        <!-- Desktop Menu - Right Side -->
+        <div class="hidden md:flex space-x-4 lg:space-x-8 text-sm lg:text-base text-gray-400 dark:text-gray-700">
+          <a [routerLink]="['/']" routerLinkActive="text-green-400 dark:text-green-600" [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-500 dark:hover:text-green-700 transition-colors">Home</a>
+          <a [routerLink]="['/atelier']" routerLinkActive="text-green-400 dark:text-green-600" class="hover:text-green-400 dark:hover:text-green-600 transition-colors">Atelier</a>
+        </div>
 
-      <div class="hidden md:flex w-full justify-center space-x-8 text-gray-400 dark:text-gray-700">
-             <a [routerLink]="['/']" class="text-green-400 dark:text-green-600">Home</a>
-             <a [routerLink]="['/atelier']" class="hover:text-green-400 dark:hover:text-green-600">Atelier</a>
-     </div>
-
-
-
-          <div class="md:hidden flex items-center">
-            <button id="mobile-menu-button" class="text-green-400 dark:text-green-600 hover:text-green-600 focus:outline-none">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button (click)="toggleMenu()" class="text-green-400 dark:text-green-600 hover:text-green-600 dark:hover:text-green-700 focus:outline-none transition-colors p-2 relative w-8 h-8">
+            <!-- Hamburger Icon -->
+            <svg [class.hidden]="isMenuOpen" class="w-5 h-5 sm:w-6 sm:h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             </svg>
+            <!-- Close Icon -->
+            <svg [class.hidden]="!isMenuOpen" class="w-5 h-5 sm:w-6 sm:h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
-          </div>
         </div>
       </div>
+
+      <!-- Mobile Menu -->
+      <div [class.hidden]="!isMenuOpen" class="md:hidden pb-4 transition-all duration-300">
+        <div class="flex flex-col space-y-3 text-gray-400 dark:text-gray-700">
+          <a [routerLink]="['/']" routerLinkActive="text-green-400 dark:text-green-600" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" class="hover:text-green-500 dark:hover:text-green-700 transition-colors py-2 text-sm">Home</a>
+          <a [routerLink]="['/atelier']" routerLinkActive="text-green-400 dark:text-green-600" (click)="closeMenu()" class="hover:text-green-400 dark:hover:text-green-600 transition-colors py-2 text-sm">Atelier</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
