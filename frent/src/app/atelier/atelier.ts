@@ -116,4 +116,10 @@ updateAtelier() {
   }
 }
 
-   }
+
+deleteAtelier(id: number) {
+  this.atelierService.deleteAtelier(id).subscribe((res) =>  {
+    console.log('Atelier supprimé avec succès');
+  });
+  }
+}
