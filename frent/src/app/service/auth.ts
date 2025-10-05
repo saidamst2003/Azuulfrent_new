@@ -1,9 +1,19 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
-import { LoginRequest, User } from '../models/user.model';
-import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export interface User {
+  id?: number;
+  username?: string;
+  email?: string;
+   role: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -116,3 +126,7 @@ export class AuthService {
     return this.isBrowser() && !!this.getToken();
   }
 }
+function jwtDecode(token: string): any {
+  throw new Error('Function not implemented.');
+}
+
