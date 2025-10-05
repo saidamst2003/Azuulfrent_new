@@ -2,31 +2,17 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = typeof localStorage !== 'undefined' ? localStorage.getItem('token') : null;
-  console.log(`Interceptor for URL: ${req.url}, Token: ${token ? 'Present' : 'Missing'}`);
 
-  // Endpoints publics qu'on ne protège pas par token
-  if (
-    req.url.includes('/user/register') ||
-    req.url.includes('/user/login') ||
-    req.url.includes('/user/roles') ||
-    req.url.includes('/upload')
-  ) {
-    console.log(`Skipping token for public endpoint: ${req.url}`);
+  // Endpoints publics qu'on ne protège pas
+  const publicEndpoints = ['/user/register', '/user/login', '/user/roles', '/upload'];
+  if (publicEndpoints.some(url => req.url.includes(url))) {
     return next(req);
   }
 
-  // Si token existe, on l'ajoute au header
+  // Ajouter le token si présent
   if (token) {
-    const authReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-    console.log(`Adding Authorization header for: ${req.url}`);
-    return next(authReq);
+    req = req.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
   }
 
-  // Pour les endpoints protégés sans token, on laisse passer mais on log
-  console.log(`No token available for protected endpoint: ${req.url}`);
   return next(req);
 };
