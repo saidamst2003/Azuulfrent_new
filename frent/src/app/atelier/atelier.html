@@ -1,0 +1,85 @@
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Mon Atelier Créatif</h1>
+    <p>Découvrez nos ateliers uniques...</p>
+  </div>
+</section>
+
+
+<!-- creer un atelier -->
+
+<div style="text-align: center;">
+  <button class="btn-new" (click)="showForm =!showForm">Publier nouvel atelier</button>
+</div>
+
+<div *ngIf="showForm" class="form-container">
+
+  <form [formGroup]="postAtelierForm" (ngSubmit)="postAtelier()">
+
+    <div class="form-group">
+      <label for="nom">Nom de l'atelier:</label>
+      <input id="nom" required formControlName="nom" >
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" required formControlName="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="categorie">Catégorie:</label>
+      <input id="categorie" name="categorie" required formControlName="categorie">
+    </div>
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input id="date" name="date" type="date" required formControlName="date">
+    </div>
+    <div class="form-group">
+      <label for="heure">Heure:</label>
+      <input id="heure" name="heure" type="time" required formControlName="heure">
+    </div>
+
+    <button *ngIf="!id" type="button" (click)="postAtelier()" class="btn btn-success">
+      Créer Atelier
+    </button>
+
+    <button *ngIf="id" type="button" (click)="updateAtelier()" class="btn btn-primary">
+      Mettre à jour Atelier
+    </button>
+</form>
+</div>
+
+  <div class="card-elegant relative" *ngFor="let atelier of ateliers">
+  
+  <div class="absolute top-2 right-2 flex space-x-2 z-10"> 
+    
+   <button 
+  (click)="onUpdateAtelier(atelier)" 
+  title="Modifier"
+  class="bg-white p-2 rounded-full shadow-md text-blue-500 hover:text-blue-700 transition duration-300"
+>
+  ✏️ </button>
+
+<button 
+  (click)="deleteAtelier(atelier.id)" 
+  title="Supprimer"
+  class="bg-white p-2 rounded-full shadow-md text-red-500 hover:text-red-700 transition duration-300"
+>
+  🗑️ </button>
+  </div>
+  
+  <div class="card-image-placeholder">
+    <img [src]="atelier.image || 'assets/images/default-image.jpg'" alt="Atelier" class="w-full h-48 object-cover rounded">
+  </div>
+
+  <div class="card-content">
+    <span class="card-category-elegant">{{ atelier.categorie }}</span>
+    <h3 class="card-title-elegant">{{ atelier.nom }}</h3>
+    <p class="card-description-elegant">{{ atelier.description }}</p>
+
+    <div class="card-footer-elegant">
+      <span class="detail-date">{{ atelier.date }}</span>
+      <span class="detail-time">{{ atelier.heure }}</span>
+    </div>
+  </div>
+</div>
