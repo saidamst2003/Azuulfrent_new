@@ -19,8 +19,11 @@
         <div class="hidden md:flex space-x-4 lg:space-x-8 text-sm lg:text-base text-gray-400 dark:text-gray-700">
           <a [routerLink]="['/']" routerLinkActive="text-green-400 dark:text-green-600" [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-500 dark:hover:text-green-700 transition-colors">Home</a>
           <a [routerLink]="['/atelier']" routerLinkActive="text-green-400 dark:text-green-600" class="hover:text-green-400 dark:hover:text-green-600 transition-colors">Atelier</a>
-          <a [routerLink]="['/login']" routerLinkActive="text-green-400 dark:text-green-600" class="hover:text-green-400 dark:hover:text-green-600 transition-colors">login</a>
 
+          <ng-container *ngIf="!isAuthenticated">
+              <a routerLink="/login">Connexion</a>
+              <a routerLink="/register">Inscription</a>
+          </ng-container>
         </div>
 
         <!-- Mobile Menu Button -->
