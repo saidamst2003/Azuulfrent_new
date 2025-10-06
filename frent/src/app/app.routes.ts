@@ -9,7 +9,6 @@ export const routes: Routes = [
   { path: 'atelier', component: AtelierComponent } ,
   { path: 'login', component: LoginComponent } ,
   { path: 'register', component: RegisterComponent } ,
-
 ];
 
 

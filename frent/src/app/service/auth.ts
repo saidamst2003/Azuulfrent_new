@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
 export interface LoginRequest {
@@ -12,8 +13,7 @@ export interface User {
   id?: number;
   username?: string;
   email?: string;
-   role: string;
-}
+  role?: string[];}
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +32,9 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
+  checkToken(): void {
+    this['atelierService'].checkAndUseToken();
+  }
   constructor(private router: Router) {
     if (this.isBrowser()) {
       const token = this.getToken();
@@ -96,11 +99,12 @@ export class AuthService {
     return this._user.getValue();
   }
 
-  private updateState(token: string): void {
-    const user: User = this.decodeToken(token);
-    this._user.next(user);
-    this._isAuthenticated.next(true);
-  }
+ private updateState(token: string): void {
+  const user: User = this.decodeToken(token);
+  this._user.next(user);
+  this._isAuthenticated.next(true);
+}
+
 
   private decodeToken(token: string): any {
     try {
@@ -125,8 +129,10 @@ export class AuthService {
   private hasToken(): boolean {
     return this.isBrowser() && !!this.getToken();
   }
-}
-function jwtDecode(token: string): any {
-  throw new Error('Function not implemented.');
+  hasRole(role: string): boolean {
+  const user = this.getCurrentUser();
+  if (!user || !user.role) return false;
+  return user.role.includes(role);
 }
 
+}
