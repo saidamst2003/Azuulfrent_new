@@ -43,7 +43,7 @@ export class AtelierComponent implements OnInit {
     });
   }
 
-  // Créer un atelier (ADMIN uniquement)
+ 
   postAtelier() {
     if (!this.authService.hasRole('ADMIN')) {
       console.log('Action non autorisée');
@@ -88,7 +88,6 @@ export class AtelierComponent implements OnInit {
     this.showForm = true;
   }
 
-  // Mettre à jour un atelier (ADMIN uniquement)
   updateAtelier() {
     if (!this.authService.hasRole('ADMIN')) {
       console.log('Action non autorisée');
@@ -116,7 +115,6 @@ export class AtelierComponent implements OnInit {
     }
   }
 
-  // Supprimer un atelier (ADMIN uniquement)
   deleteAtelier(id: number) {
     if (!this.authService.hasRole('ADMIN')) {
       console.log('Action non autorisée');
